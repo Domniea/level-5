@@ -27,4 +27,11 @@ drinkRouter.route('/')
         res.send(`${drink.name} has been successfully added`)
     })
 
+drinkRouter.route('/:drinkId')
+    .get((req, res) => {
+        const beverage = req.params.drinkId
+        const foundDrink = drinks.find(x => x._id === beverage)
+        res.send(foundDrink)
+    })
+
 module.exports = drinkRouter
