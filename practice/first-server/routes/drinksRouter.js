@@ -20,18 +20,36 @@ drinkRouter.route('/')
     .get((req, res) => {
         res.send(drinks)
     })
-    .post((req, res) => {
-        const drink = req.
-        drink._id = uuidv4()
-        drinks.push(drink)
-        res.send(`${drink.name} has been successfully added`)
-    })
 
 drinkRouter.route('/:drinkId')
     .get((req, res) => {
-        const beverage = req.params.drinkId
-        const foundDrink = drinks.find(x => x._id === beverage)
-        res.send(foundDrink)
+        const id = req.params.drinkId
+        const found = drinks.find(x => x._id === id)
+        res.send(found)
+    })
+
+drinkRouter.route('/')
+    .post((req, res) => {
+        const drink = req.body
+        drink._id = uuidv4()
+        drinks.push(drink)
+        res.send(`${drink.type} has been successfully added`)
+    })
+
+drinkRouter.route('/:drinksId')
+    .put((req, res) => {
+        const id = req.params.drinksId
+        const foundId = drinks.findIndex(x => x._id === id)
+        const final = Object.assign(drinks[foundId], req.body)
+        res.send(final)
+    })
+
+drinkRouter.route('/:drinksId')
+    .delete((req, res) => {
+        const id = req.params.drinksId
+        const foundId = drinks.findIndex(x => x._id === id)
+        drinks.splice(foundId, 1)
+        res.send('Drink Deleted!')
     })
 
 module.exports = drinkRouter

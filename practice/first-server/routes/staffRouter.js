@@ -1,4 +1,5 @@
 const express = require('express')
+
 const app = express()
 const staffRouter = express.Router()
 
@@ -21,6 +22,15 @@ staffRouter.route('/')
     .get((req,res) => {
         res.send(staff)
     })
+
+staffRouter.route('/:personId')
+        .get((req, res) => {
+            const personId = req.params.personId
+            const foundPerson = staff.find(employee => employee._id === personId)
+            res.send(foundPerson)
+        })
+
+staffRouter.route('/')
     .post((req, res) => {
         const employee = req.body
         employee._id = uuidv4()
@@ -29,11 +39,20 @@ staffRouter.route('/')
     })
 
 staffRouter.route('/:personId')
-    .get((req, res) => {
-        const personId = req.params.personId
-        const foundPerson = staff.find(employee => employee._id === personId)
-        res.send(foundPerson)
+    .put((req, res) => {
+        const id = req.params.personId
+        const foundId = staff.findIndex(x => x._id === id)
+        const final = Object.assign(staff[foundId], req.body)
+        res.send(final)
     })
+
+staffRouter.route('/:personId')
+        .delete((req, res) => {
+            const personId = req.params.personId
+            const person = staff.findIndex(person => person._id === personId)
+            staff.splice(person, 1)
+            res.send('successfully deleted!') 
+        })
 
 staffRouter.route('/search/hairColor')
     .get((req, res) => {
@@ -41,5 +60,6 @@ staffRouter.route('/search/hairColor')
         const foundData = staff.filter(person => person.hairColor === hairColor)
         res.send(foundData)
     })
+
 
 module.exports = staffRouter

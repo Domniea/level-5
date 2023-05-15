@@ -1,9 +1,11 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 const {v4: uuidv4} = require('uuid')
 
 app.use(express.json())
+app.use(morgan('dev'))
 
 app.get('/', (req, res) => {
     res.send('Welcome One And All To My Server!!!')
