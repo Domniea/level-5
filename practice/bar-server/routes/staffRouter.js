@@ -15,7 +15,7 @@ const staff = [
     {name: "Vic", job: "Being Black", hairColor: "brown",_id: uuidv4()}, 
     {name: "Tanner", job: "Loving Steve Austin",hairColor: "brown", _id: uuidv4()},
     {name: "'G'", job: "Door/Barback", hairColor: "brown",_id: uuidv4()}, 
-    {name: "Chuck", job: "Peeing In Fire Escapes",hairColor: "black", _id: uuidv4()}
+    {name: "Chuck", job: "Managing Cheers",hairColor: "black", _id: uuidv4()}
 ]
 
 staffRouter.route('/')
@@ -51,7 +51,7 @@ staffRouter.route('/:personId')
             const personId = req.params.personId
             const person = staff.findIndex(person => person._id === personId)
             staff.splice(person, 1)
-            res.send('Successfully Deleted') 
+            res.send('successfully deleted!') 
         })
 
 staffRouter.route('/search/hairColor')

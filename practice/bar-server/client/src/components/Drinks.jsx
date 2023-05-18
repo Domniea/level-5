@@ -2,19 +2,21 @@ import React from "react";
 
 function Drinks( props )  {
 
-    const { type, cost, _id, deleteDrink } = props
-    // console.log(_id)
-    return (
+    const {type, cost} = props
+
+    const id = props._id
+
+    return(
+        <>
             <div className="Drinks">
                 <h1>Type: {type}</h1>
                 <h3>Cost: ${cost}</h3>
-                <button 
-                    className="delete--button" 
-                    onClick={()=> deleteDrink(_id)} 
-                >
+                <button
+                onClick={() => props.deleteDrink(id)}>
                     Delete
                 </button>
             </div>
+        </>
     )
 }
 
