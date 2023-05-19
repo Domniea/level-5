@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 
 function DrinksForm(props) {
+
+    const {type, cost, _id, submit, editToggle, toggle} = props
+
     const initInputs = {
-        type: '',
-        cost: ''
+        type: type || '',
+        cost: cost || ''
     }
 
     const [inputs, setInputs] = useState(initInputs)
@@ -22,11 +25,12 @@ function DrinksForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        props.submitDrinks(inputs, props._id)
+        submit(inputs, _id)
         setInputs(initInputs)
+        if(editToggle){
+            toggle()
+        }
     }
-
-    console.log(props.staff)
 
     return (
         <form >

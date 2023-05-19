@@ -2,6 +2,8 @@ import React, {useState} from "react";
 
 function StaffForm(props) {
 
+    const { editToggle, toggle } = props
+
     const initInputs = {
         name: props.name || '',
         job: props.job || '',
@@ -26,8 +28,11 @@ function StaffForm(props) {
         e.preventDefault()
         props.submit(inputs, props._id)
         setInputs(initInputs)
+        if(editToggle) {
+            toggle()
+        }
     }
-    
+
     return (
         <form 
             onSubmit={handleSubmit}>
@@ -48,6 +53,7 @@ function StaffForm(props) {
             <input 
                 type="text" 
                 name="hairColor" 
+                placeholder="Hair Color"
                 value={inputs.hairColor}
                 onChange={handleChange} 
             />

@@ -28,15 +28,15 @@ function App() {
   function addStaff(employee) {
     axios.post('/api/staff', employee)
       .then(res => {
-        setStaff(prevStaff => [...prevStaff, res.data])
+        setStaff(prevStaff => [res.data, ...prevStaff])
       })
       .catch(err => (console.log(err)))
   }
 
-  function submitDrinks(drink) {
+  function submitDrink(drink) {
     axios.post('/api/drinks', drink)
       .then(res => {
-        setDrinks(prevDrinks => [...prevDrinks, res.data])
+        setDrinks(prevDrinks => [res.data, ...prevDrinks])
       })
       .catch(err => console.log(err))
   }
@@ -67,6 +67,13 @@ function App() {
       .catch(err => console.log(err))
   }
 
+  function editDrinks(updates, id) {
+    axios.put(`/api/drinks/${id}`, updates)
+      .then(res => {
+        setDrinks(prevDrinks => prevDrinks.map(drink => drink._id !== id ? drink : res.data))
+      })
+      .catch(err => console.log(err))
+  }
 
   useEffect(() => {
     getStaff()
@@ -89,8 +96,8 @@ function App() {
     return <Drinks 
       {...drink}
       key = {drink._id}
-      _id={drink._id}
       deleteDrink={deleteDrink}
+      editDrinks={editDrinks}
     />
   })
 
@@ -102,11 +109,11 @@ function App() {
           buttonText='Add Staff'
         />
         {employee}
-        {/* <DrinkForm 
+        <DrinkForm 
           buttonText='Submit'
-          submitDrinks={submitDrinks}
+          submit={submitDrink}
         />
-        {beverage} */}
+        {beverage}
       </div>
     </>
   )

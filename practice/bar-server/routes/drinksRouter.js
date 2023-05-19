@@ -7,12 +7,13 @@ app.use(express.json())
 const {v4: uuidv4} = require('uuid')
 
 const drinks = [
-    {type: "domestic", cost: '3', _id: uuidv4()},
-    {type: "sub well", cost: '3.25', _id: uuidv4()},
-    {type: "well", cost: '4.75', _id: uuidv4()},
-    {type: "call", cost: '5.75', _id: uuidv4()},
-    {type: "premium", cost: '6.25', _id: uuidv4()},
-    {type: "super", cost: '6.75', _id: uuidv4()}
+    {type: "Domestic", cost: '3', _id: uuidv4()},
+    {type: "Micro", cost: '4', _id: uuidv4()},
+    {type: "Sub Well", cost: '3.25', _id: uuidv4()},
+    {type: "Well", cost: '4.75', _id: uuidv4()},
+    {type: "Call", cost: '5.75', _id: uuidv4()},
+    {type: "Premium", cost: '6.25', _id: uuidv4()},
+    {type: "Super", cost: '6.75', _id: uuidv4()}
 ]
 
 

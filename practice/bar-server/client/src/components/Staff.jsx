@@ -6,7 +6,6 @@ function Staff( props ) {
 
 
     const { name, job, hairColor, _id } = props
-    const id = props._id
 
     function toggle() {
         setEditToggle(prevState => !prevState)
@@ -21,12 +20,12 @@ function Staff( props ) {
                 <h4>Hair Color: {hairColor}</h4>
                 <button
                     className="delete--btn"
-                    onClick={() => props.deleteStaff(id)}>
+                    onClick={() => props.deleteStaff(_id)}>
                     Delete
                 </button>
                 <button
                     className="edit--btn"
-                    onClick={() => setEditToggle(prevState => !prevState)}
+                    onClick={toggle}
                 >
                     Edit
                 </button>
@@ -40,9 +39,11 @@ function Staff( props ) {
                     hairColor={hairColor}
                     _id={_id}
                     submit={props.editStaff}
+                    editToggle={editToggle}
+                    toggle={toggle}
                 />
                 <button
-                    onClick={() => setEditToggle(prevState => !prevState)}
+                    onClick={toggle}
                 >
                     Close
                 </button>
