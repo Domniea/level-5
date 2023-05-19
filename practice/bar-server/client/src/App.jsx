@@ -10,9 +10,8 @@ function App() {
 
   const [staff, setStaff]= useState([])
   const [drinks, setDrinks] = useState([])
-  const [count, setCount] = useState(0)
 
-  function getMovie() {
+  function getStaff() {
     axios.get('/api/staff')
     .then(res => setStaff(res.data))
     .catch(err => console.log(err))
@@ -61,19 +60,16 @@ function App() {
       })
       .catch(err => console.log(err))
   }
-  function editStaff(updates, id) {
 
+  function editStaff(updates, id) {
     axios.put(`/api/staff/${id}`, updates)
-      .then(res =>  {
-        console.log(res)
-        setStaff(prevState => prevState.map(person => person._id === id ? res.data : person))
-      })
+      .then(res => setStaff(prevState => prevState.map(person => person._id !== id ? person : res.data)))
       .catch(err => console.log(err))
   }
 
 
   useEffect(() => {
-    getMovie()
+    getStaff()
   } ,[])
 
   useEffect(() => {
@@ -86,9 +82,6 @@ function App() {
       key = {person._id}
       deleteStaff={deleteStaff}
       editStaff={editStaff}
-      count={count}
-      setCount={setCount}
-      staff={staff}
     />
   })
 

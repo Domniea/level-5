@@ -12,11 +12,6 @@ function Staff( props ) {
         setEditToggle(prevState => !prevState)
     }
 
-    console.log(editToggle)
-
-    
-
-
     return (
         <div className="Staff">
             { editToggle ?
@@ -31,7 +26,7 @@ function Staff( props ) {
                 </button>
                 <button
                     className="edit--btn"
-                    onClick={toggle}
+                    onClick={() => setEditToggle(prevState => !prevState)}
                 >
                     Edit
                 </button>
@@ -43,12 +38,11 @@ function Staff( props ) {
                     name={name}
                     job={job}
                     hairColor={hairColor}
-                    _id={ _id}
-                    submit={ props.editStaff}
-
+                    _id={_id}
+                    submit={props.editStaff}
                 />
                 <button
-                    onClick={toggle}
+                    onClick={() => setEditToggle(prevState => !prevState)}
                 >
                     Close
                 </button>

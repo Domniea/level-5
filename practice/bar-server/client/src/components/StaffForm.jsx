@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 
 function StaffForm(props) {
+
     const initInputs = {
         name: props.name || '',
         job: props.job || '',
@@ -28,7 +29,8 @@ function StaffForm(props) {
     }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form 
+            onSubmit={handleSubmit}>
             <input 
                 type="text"
                 name="name" 
@@ -40,16 +42,16 @@ function StaffForm(props) {
                 type="text" 
                 name="job"
                 placeholder="Job"
-                value={inputs.job ||''}
+                value={inputs.job}
                 onChange={handleChange} 
             />
             <input 
                 type="text" 
                 name="hairColor" 
-                value={inputs.hairColor || ''}
+                value={inputs.hairColor}
                 onChange={handleChange} 
             />
-            <button >{props.buttonText}</button>
+            <button>{props.buttonText}</button>
         </form>
     )
 }
