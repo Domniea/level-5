@@ -10,6 +10,7 @@ function App() {
 
   const [staff, setStaff]= useState([])
   const [drinks, setDrinks] = useState([])
+  const [count, setCount] = useState(0)
 
   function getMovie() {
     axios.get('/api/staff')
@@ -25,7 +26,7 @@ function App() {
       .catch(err => console.log(err))
   }
 
-  function submitStaff(employee) {
+  function addStaff(employee) {
     axios.post('/api/staff', employee)
       .then(res => {
         setStaff(prevStaff => [...prevStaff, res.data])
@@ -60,6 +61,16 @@ function App() {
       })
       .catch(err => console.log(err))
   }
+  function editStaff(updates, id) {
+
+    axios.put(`/api/staff/${id}`, updates)
+      .then(res =>  {
+        console.log(res)
+        setStaff(prevState => prevState.map(person => person._id === id ? res.data : person))
+      })
+      .catch(err => console.log(err))
+  }
+
 
   useEffect(() => {
     getMovie()
@@ -73,8 +84,11 @@ function App() {
     return <Staff 
       {...person}
       key = {person._id}
-      _id={person._id}
       deleteStaff={deleteStaff}
+      editStaff={editStaff}
+      count={count}
+      setCount={setCount}
+      staff={staff}
     />
   })
 
@@ -86,20 +100,20 @@ function App() {
       deleteDrink={deleteDrink}
     />
   })
-  
+
   return (
     <>
       <div className="App">
         <StaffForm 
-          submitStaff={submitStaff}
-          buttonText='Submit'
+          submit={addStaff}
+          buttonText='Add Staff'
         />
         {employee}
-        <DrinkForm 
+        {/* <DrinkForm 
           buttonText='Submit'
           submitDrinks={submitDrinks}
         />
-        {beverage}
+        {beverage} */}
       </div>
     </>
   )

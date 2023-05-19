@@ -2,9 +2,9 @@ import React, {useState} from "react";
 
 function StaffForm(props) {
     const initInputs = {
-        name: '',
-        job: '',
-        hairColor: ''
+        name: props.name || '',
+        job: props.job || '',
+        hairColor: props.hairColor || ''
     }
 
     const [inputs, setInputs] = useState(initInputs)
@@ -23,31 +23,33 @@ function StaffForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        props.submitStaff(inputs)
+        props.submit(inputs, props._id)
         setInputs(initInputs)
     }
     
     return (
         <form onSubmit={handleSubmit}>
             <input 
-                type="text" 
+                type="text"
                 name="name" 
+                placeholder="Name"
                 value={inputs.name}
                 onChange={handleChange} 
             />
             <input 
                 type="text" 
-                name="job" 
-                value={inputs.job}
+                name="job"
+                placeholder="Job"
+                value={inputs.job ||''}
                 onChange={handleChange} 
             />
             <input 
                 type="text" 
                 name="hairColor" 
-                value={inputs.hairColor}
+                value={inputs.hairColor || ''}
                 onChange={handleChange} 
             />
-            <button onClick={() => handleSubmit}>{props.buttonText}</button>
+            <button >{props.buttonText}</button>
         </form>
     )
 }

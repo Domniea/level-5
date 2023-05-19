@@ -1,4 +1,5 @@
 import React from "react";
+import DrinksForm from "./DrinksForm";
 
 function Drinks( props )  {
 
@@ -15,6 +16,7 @@ function Drinks( props )  {
                 onClick={() => props.deleteDrink(id)}>
                     Delete
                 </button>
+                <DrinksForm />
             </div>
         </>
     )

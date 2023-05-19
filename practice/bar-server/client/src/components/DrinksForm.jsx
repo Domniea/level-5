@@ -22,9 +22,11 @@ function DrinksForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        props.submitDrinks(inputs)
+        props.submitDrinks(inputs, props._id)
         setInputs(initInputs)
     }
+
+    console.log(props.staff)
 
     return (
         <form >

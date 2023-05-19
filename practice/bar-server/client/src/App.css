@@ -1,3 +1,10 @@
+* {
+    color: #333;
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
 body{
     margin: 5vw;
 }
@@ -6,9 +13,36 @@ body{
     border: 1px solid grey;
     margin: 5%;
     padding: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
+input {
+    padding: .75rem;
+    border: 1px solid #333;
+    border-radius: .5rem;
+    margin: .3rem;
+
+}
+
+button {
+    padding: 1%;
+    border-radius: .25rem;
+    font-size: 1rem;
+}
+
+form {
+    border: 1px solid #333;
+    padding: .75rem;
+    margin: .35rem;
+}
+
+.delete--btn {
+    background-color: red;
+    color: whitesmoke;
+    margin: .25rem;
+}
+
+.edit--btn {
+    background-color: #3662af;
+    color: whitesmoke;
+    margin: .25rem;
+}
