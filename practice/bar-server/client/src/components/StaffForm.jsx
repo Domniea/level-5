@@ -2,12 +2,12 @@ import React, {useState} from "react";
 
 function StaffForm(props) {
 
-    const { editToggle, toggle } = props
+    const {name, job, hairColor , _id, submit, editToggle, toggle} = props
 
     const initInputs = {
-        name: props.name || '',
-        job: props.job || '',
-        hairColor: props.hairColor || ''
+        name: name || '',
+        job: job || '',
+        hairColor: hairColor || ''
     }
 
     const [inputs, setInputs] = useState(initInputs)
@@ -26,7 +26,7 @@ function StaffForm(props) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        props.submit(inputs, props._id)
+        submit(inputs, _id)
         setInputs(initInputs)
         if(editToggle) {
             toggle()
@@ -34,8 +34,7 @@ function StaffForm(props) {
     }
 
     return (
-        <form 
-            onSubmit={handleSubmit}>
+        <form >
             <input 
                 type="text"
                 name="name" 
@@ -57,7 +56,7 @@ function StaffForm(props) {
                 value={inputs.hairColor}
                 onChange={handleChange} 
             />
-            <button>{props.buttonText}</button>
+            <button onClick={handleSubmit}>{props.buttonText}</button>
         </form>
     )
 }

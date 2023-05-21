@@ -37,12 +37,14 @@ function DrinksForm(props) {
             <input 
                 type="text" 
                 name="type" 
+                placeholder="Type"
                 value={inputs.type}
                 onChange={handleChange} 
             />
             <input 
                 type="text" 
                 name="cost" 
+                placeholder="Cost"
                 value={inputs.cost}
                 onChange={handleChange} 
             />

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import DrinksForm from "./DrinksForm";
 
 function Drinks( props )  {
+    const [editToggle, setEditToggle] = useState(false)
 
     const { type, cost, _id, editDrinks } = props
-    const [editToggle, setEditToggle] = useState(false)
 
     function toggle() {
         setEditToggle(prevState => !prevState)
