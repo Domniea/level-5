@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
 app.use('/staff', require('./routes/staffRouter'))
 app.use('/drinks', require('./routes/drinksRouter'))
 
+app.use((err, req, res, next) => {
+    return res.send({errMsg: err.message})
+})
 
 app.listen(9000, () => {
     console.log('Server is running on port 9000')

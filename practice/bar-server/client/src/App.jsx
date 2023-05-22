@@ -30,7 +30,7 @@ function App() {
       .then(res => {
         setStaff(prevStaff => [res.data, ...prevStaff])
       })
-      .catch(err => (console.log(err)))
+      .catch(err => (console.log(err.response.data.errMsg)))
   }
 
   function submitDrink(drink) {
@@ -38,7 +38,7 @@ function App() {
       .then(res => {
         setDrinks(prevDrinks => [res.data, ...prevDrinks])
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response.data.errMsg))
   }
 
   function deleteStaff(id){
@@ -48,7 +48,7 @@ function App() {
           return prevStaff.filter(employee => employee._id !== id)
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response.data.errMsg))
   }
 
   function deleteDrink(id){
@@ -58,13 +58,13 @@ function App() {
           return prevDrinks.filter(drink => drink._id !== id)
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response.data.errMsg))
   }
 
   function editStaff(updates, id) {
     axios.put(`/api/staff/${id}`, updates)
       .then(res => setStaff(prevState => prevState.map(person => person._id !== id ? person : res.data)))
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response.data.errMsg))
   }
 
   function editDrinks(updates, id) {
@@ -72,7 +72,7 @@ function App() {
       .then(res => {
         setDrinks(prevDrinks => prevDrinks.map(drink => drink._id !== id ? drink : res.data))
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err.response.data.errMsg))
   }
 
   useEffect(() => {
