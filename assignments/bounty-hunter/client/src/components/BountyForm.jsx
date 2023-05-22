@@ -1,6 +1,9 @@
 import React , {useState} from "react";
 
-function BountyForm() {
+function BountyForm(props) {
+
+    const { submit , buttonText, _id, editToggle, toggle } = props
+
     const initInputs = {
         firstName: "", 
         lastName: "", 
@@ -19,17 +22,20 @@ function BountyForm() {
         }))
     }
 
-    function submit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
-        console.log(inputs)
+        submit(inputs, _id)
         setInputs(initInputs)
+        if(editToggle) {
+            toggle()
+        }
     }
 
     return (
         <>
             <form 
                 className="Form"
-                onSubmit={submit}
+                onSubmit={handleSubmit}
             >
                 <input 
                     type="text" 
@@ -37,6 +43,8 @@ function BountyForm() {
                     placeholder="First Name"
                     value={inputs.firstName} 
                     onChange={handleChange}
+                    required
+                    minLength={3}
                 />
                 <input 
                     type="text" 
@@ -58,6 +66,7 @@ function BountyForm() {
                     placeholder="Bounty"
                     value={inputs.bounty} 
                     onChange={handleChange}
+                    required
                 />
                 <input 
                     type="text" 
@@ -66,7 +75,7 @@ function BountyForm() {
                     value={inputs.type} 
                     onChange={handleChange}
                 />
-                <button>Submit</button>
+                <button>{buttonText}</button>
             </form>
         </>
     )

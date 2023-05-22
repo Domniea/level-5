@@ -8,11 +8,22 @@ body {
   margin: 5%
 }
 
+Form , .PersonOfInterest {
+  padding: 1%;
+  margin: 5%;
+  border-radius: 5px;
+  border: solid 1px #333;
+}
+
 input {
   margin: 1%;
-  padding: 1%
+  padding: 1%;
+  border-radius: 5px;
+  
 }
 
 button {
-  padding: 1%
+  padding: 1%;
+  margin: 1%;
+  border-radius: 5px;
 }
