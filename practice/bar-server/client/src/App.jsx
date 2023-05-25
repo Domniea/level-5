@@ -101,6 +101,17 @@ function App() {
     />
   })
 
+  function handleSelect(e) {
+    if( e.target.value === 'reset' ) {
+      getStaff()
+    } else {
+      axios.get(`/api/staff/search/hairColor?hairColor=${e.target.value}`)
+        .then(res => setStaff(res.data))
+        .catch(err => console.log(err))
+    }
+    console.log(e.target.value)
+  }
+
   return (
     <>
       <div className="App">
@@ -108,6 +119,15 @@ function App() {
           submit={addStaff}
           buttonText='Add Staff'
         />
+
+        <select onChange={handleSelect}>
+          <option value='reset'>- Reset-</option>
+          <option value='brown'>Brown</option>
+          <option value='black'>Black</option>
+          <option value='green'>Green</option>
+        </select>
+
+
         {employee}
         <DrinkForm 
           buttonText='Submit'

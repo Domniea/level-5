@@ -33,13 +33,14 @@ function DrinksForm(props) {
     }
 
     return (
-        <form >
+        <form onSubmit={handleSubmit}>
             <input 
                 type="text" 
                 name="type" 
                 placeholder="Type"
                 value={inputs.type}
-                onChange={handleChange} 
+                onChange={handleChange}
+                required 
             />
             <input 
                 type="text" 
@@ -47,8 +48,9 @@ function DrinksForm(props) {
                 placeholder="Cost"
                 value={inputs.cost}
                 onChange={handleChange} 
+                required
             />
-            <button onClick={handleSubmit}>{props.buttonText}</button>
+            <button>{props.buttonText}</button>
         </form>
     )
 }

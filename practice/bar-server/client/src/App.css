@@ -15,7 +15,7 @@ body{
     padding: 2%;
 }
 
-input {
+input, select {
     padding: .75rem;
     border: 1px solid #333;
     border-radius: .5rem;

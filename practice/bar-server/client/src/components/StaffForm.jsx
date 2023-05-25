@@ -33,21 +33,42 @@ function StaffForm(props) {
         }
     }
 
+    function read(e) {
+        console.log(e.target.value)
+    }
+
     return (
-        <form >
+        <form onSubmit={handleSubmit}>
             <input 
                 type="text"
                 name="name" 
                 placeholder="Name"
                 value={inputs.name}
-                onChange={handleChange} 
+                onChange={handleChange}
+                required
+       
             />
+            {/* <select 
+                onClick={read}
+                value={inputs.job}
+                onChange={handleChange}
+                name="job"
+            >
+                <option>- Pick A Position -</option>
+                <option value='bartender'>Bartender</option>
+                <option value='barback'>Barback</option>
+                <option value='door'>Door</option>
+                <option value='manager'>Manager</option>
+                <option value='maintainance'>Mantainance</option>
+                <option value='owner'>Owner</option>
+            </select> */}
             <input 
                 type="text" 
                 name="job"
                 placeholder="Job"
                 value={inputs.job}
                 onChange={handleChange} 
+                required
             />
             <input 
                 type="text" 
@@ -56,7 +77,7 @@ function StaffForm(props) {
                 value={inputs.hairColor}
                 onChange={handleChange} 
             />
-            <button onClick={handleSubmit}>{props.buttonText}</button>
+            <button >{props.buttonText}</button>
         </form>
     )
 }
