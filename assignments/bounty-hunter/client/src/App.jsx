@@ -6,11 +6,7 @@ import Bounty from './components/Bounty'
 import './App.css'
 
 function App() {
-//   useEffect(() => {
-//     axios.get('/api/')
-//         .then(res => console.log(res))
-//         .catch(err => console.log(err))
-// }, [])
+
   return (
     <>
     <Routes>

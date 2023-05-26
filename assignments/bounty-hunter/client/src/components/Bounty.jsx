@@ -7,12 +7,6 @@ function Bounty() {
 
     const [bountys, setBountys] = useState([])
 
-    const [editToggle, setEditToggle] = useState(false)
-
-    function toggle() {
-        setEditToggle(prevState => !prevState)
-    }
-
     function getBounty() {
         axios.get('/api/bounty')
             .then(res => {
@@ -59,13 +53,13 @@ function Bounty() {
 
 
     const personOfIntrest = bountys.map(person => {
+
         return <PersonOfIntrest 
                 key={person._id}
                 {...person}
                 deleteBounty={deleteBounty}
                 submit={editBounty}
-                editToggle={editToggle}
-                toggle={toggle}
+
 
             />
     })
@@ -76,6 +70,7 @@ function Bounty() {
                 <h1>BOUNTY TEST</h1>
                 <BountyForm 
                     submit={postBounty}
+                    buttonText='Submit'
                 />
                 {personOfIntrest}
             </div>
