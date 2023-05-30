@@ -55,5 +55,19 @@ bountyRouter.put('/:bountyId', ( req, res, next ) => {
         }
     )
 })
+
+bountyRouter.get('/search', ( req, res, next) => {
+    const { name } = req.query
+    const pattern = new RegExp(name)
+    Bounty.find(
+        { lastName: { $regex: pattern, $options: 'i' } },  ( err, results ) => {
+        // return req.query
+        if (err) {
+            res.sendStatus(500)
+            return next(err)
+        }
+        return res.status(200).send(results)
+    })
+})
     
 module.exports = bountyRouter
