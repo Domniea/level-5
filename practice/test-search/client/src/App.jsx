@@ -24,7 +24,7 @@ function App() {
       .catch(err => console.log( err ))
   }, [])
 
-  console.log(dogData)
+  // console.log(dogData)
 
   const pup = dogData.map(canine => {
     return <Dog 
@@ -32,10 +32,19 @@ function App() {
       key={canine._id}
     />
   })
+function handleSubmit(e) {
+  e.preventDefault()
+axios.get(`/api/dogs/search/name?name=${inputs.search}`)
+  .then(res => setDogData(res.data))
+  .catch(err=> console.log(err))
+}
+
   return (
     <>
     <h1>Home</h1>
-    <form >
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="search">Search By Name</label>
+      <br></br>
       <input 
         type='text'
         name='search'

@@ -61,10 +61,31 @@ dogRouter.delete('/:dogId', ( req, res, nest) => {
     )
 })
 
-dogRouter.get('/search', ( req, res, next) => {
-    const { name } = res.querey
+dogRouter.get('/search/name?', ( req, res, next) => {
+    const { name } = req.query
     const pattern = new RegExp(name)
-    Dog.find({ name: {$regex: pattern}})
+    Dog.find({ name: { $regex: pattern, $options: 'i' } },
+    ( err, item) => {
+        if ( err ) {
+            res.sendStatus( 500 )
+            return next( err )
+        }
+        return res.status( 200 ).send(item)
+    })
 })
 
+
+// dogRouter.get('/search', ( req, res, next) => {
+//     return console.log(req)
+//     const { name } = req.query
+//     const pattern = new RegExp(name)
+//     Dog.find({ name: { $regex: pattern, $options: 'i' } },
+//     ( err, item) => {
+//         if ( err ) {
+//             res.sendStatus( 500 )
+//             return next( err )
+//         }
+//         return res.status( 200 ).send(item)
+//     })
+// })
 module.exports = dogRouter
